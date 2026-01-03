@@ -11,6 +11,7 @@ public record UserResponse(
         String fullName,
         String gender,
         String email,
-        LocalDate dob
+        LocalDate dob,
+        Integer age
 ) {
 }

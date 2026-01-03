@@ -1,5 +1,6 @@
 package com.example.springmvc.customerservice.controller;
 
+import com.example.springmvc.customerservice.dto.UpdateUserRequest;
 import com.example.springmvc.customerservice.dto.UserRequest;
 import com.example.springmvc.customerservice.dto.UserResponse;
 import com.example.springmvc.customerservice.service.UserService;
@@ -32,8 +33,9 @@ public class UserController {
 
     // update user
     @PutMapping("/{id}")
-    public UserResponse update(@PathVariable Integer id, @RequestBody UserRequest userRequest) {
-        return userService.update(userRequest);
+    public UserResponse updateById(@PathVariable Integer id , @Valid @RequestBody UpdateUserRequest updateUserRequest) {
+        return userService.updateById(id, updateUserRequest);
+
     }
 
     //  get user by id

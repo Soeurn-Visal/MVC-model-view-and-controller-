@@ -23,5 +23,6 @@ public class User {
     private String gender;
     private String phoneNumber;
     private LocalDate dob;
+    private Integer age;
 
 }

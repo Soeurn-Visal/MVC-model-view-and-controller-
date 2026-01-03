@@ -2,6 +2,7 @@ package com.example.springmvc.customerservice.service.impl;
 
 import com.example.springmvc.customerservice.domain.User;
 
+import com.example.springmvc.customerservice.dto.UpdateUserRequest;
 import com.example.springmvc.customerservice.dto.UserRequest;
 import com.example.springmvc.customerservice.dto.UserResponse;
 import com.example.springmvc.customerservice.mapper.UserMapper;
@@ -58,9 +59,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse update(UserRequest userRequest) {
-        User user = userMapper.toDomain(userRequest);
+    public UserResponse updateById(Integer id , UpdateUserRequest updateUserRequest) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+
+        userMapper.toUserPartially(updateUserRequest , user);
         return userMapper.toUserResponse(userRepository.save(user));
+
     }
 
 
